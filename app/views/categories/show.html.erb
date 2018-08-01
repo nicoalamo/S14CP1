@@ -1,9 +1,37 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @category.name %>
-</p>
+<h1>Categoría: <%= @category.name %> </h1>
+
+<h2>Productos: </h2>
+
+<div class="row">
+  <div class="col-md-6">
+
+
+
+<table class="table table-striped">
+  <tr>
+    <th>Nombre</th>
+    <th>Precio</th>
+    <th>Acción</th>
+  </tr>
+
+  <% @category.products.each do |prod| %>
+
+  <tr>
+    <td><%= prod.name %></td>
+    <td><%= prod.price %></td>
+    <td><%= link_to '(Borrar)', category_product_path(@category, prod), method: :delete %> </td>
+  </tr>
+
+  <% end %>
+
+</table>
+
+</div>
+</div>
+
+
 
 <%= form_with(model: [@category, Product.new], local: true) do |form| %>
 
